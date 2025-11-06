@@ -33,3 +33,4 @@ export const cosineSimilarity = (vecA, vecB) => {
     ? dotProduct / (Math.sqrt(magnitudeA) * Math.sqrt(magnitudeB))
     : 0;
 };
+
