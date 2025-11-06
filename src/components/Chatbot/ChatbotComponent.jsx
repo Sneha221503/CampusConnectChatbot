@@ -2,7 +2,9 @@
 import React , { useState, useEffect, useRef } from "react";
 import { SIMILARITY_THRESHOLD } from "../../util/constants"; // Path adjusted
 import "./Chatbot.css";
-import useOnlineStatus from "../../hooks/useOnlineStatus";
+
+import useOnlineStatus from '../../util/hooks/useOnlineStatus';
+
 import { getEmbeddings, cosineSimilarity } from "../../util/aiService";
 import KNOWLEDGE_BASE_DATA from "../../data/knowledgeBase.json";
 
@@ -141,7 +143,7 @@ const ChatbotComponent = () => {
       {!isChatOpen && (
         <button className="chatbot-open-button" onClick={toggleChat}>
           <img
-            src="/images/operator.png"
+            src="/images/chaticon.webp"
             alt="Chat Icon"
             style={{ width: "100px", height: "auto" }}
           />
@@ -151,9 +153,8 @@ const ChatbotComponent = () => {
         {isChatOpen && (
           <>
             <div className="chatbot-header">
-              <span role="img" aria-label="Chatbot icon">
-                🤖
-              </span>
+              <span className="chatbot-header-icon" role="img" aria-label="Chatbot icon">🤖</span>
+
               <h2>CampusConnect Chatbot</h2>
               <button className="chatbot-close-button" onClick={toggleChat}>
                 ❌
@@ -188,7 +189,7 @@ const ChatbotComponent = () => {
               {loading && (
                 <div className="message-row bot">
                   <div className="avatar bot-avatar">🤖</div>
-                  <p className="bot-message loading-indicator">Typing...</p>
+                  <p className="bot-message loading-indicator">Bot is Typing...</p>
                 </div>
               )}
             </div>
@@ -211,7 +212,7 @@ const ChatbotComponent = () => {
                 onClick={handleSendMessage}
                 disabled={loading || isKnowledgeBaseLoading || !isOnline}
               >
-                {loading ? "..." : "Send"}
+                {loading ? "..." : "✈️"}
               </button>
             </div>
           </>
